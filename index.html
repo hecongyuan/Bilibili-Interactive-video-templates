@@ -10,26 +10,27 @@
 <body id="body" style="margin: 0;padding: 0;background-color: black;" onmouseenter="fullScreenModel()" onmousemove="fullScreenModel()" onmouseover="fullScreenModel()">
     <div class="w-full h-full" id="container">
         <div style="width: 100%;height: 100%;" class="mb-1">
-            <video id="player" src="./video/1.开头动画+六岁的一玊大场景(选择点).mp4" class="inline-block" autoplay preload
-                crossorigin="anonymous" height="1080px" width="1920px" playsinline ></video>
+            <video id="player" src="https://drive.google.com/file/d/1jfhl1IDyZjWCuB-5nMZ7g4sguCdOgGWq/view?usp=sharing" class="inline-block" autoplay preload 
+                crossorigin="anonymous" height="1080px" width="1920px" playsinline controls></video>
+                
 
             <div id="progressContainer" class="w-full h-5px  flex justify-center hidden">
-                <div id="progress" class="bg-white h-5px w-full opcity-8" style="transform: translateY(-12px);" onresize="handleOnresize"></div>
+                <div id="progress" class="bg-white h-5px w-full opcity-8" style="transform: translateY(0px);" onresize="handleOnresize"></div>
             </div>
-            <div id="btn" class="text-gray w-full flex justify-space-around pt-10 hidden absolute b-0" style="transform: translateY(-20px);">
+            <div id="btn" class="bg-black text-gray w-full flex justify-space-around pt-10 hidden absolute b-0" style="transform: translateY(-20px);">
                 <div id="leftBtn" class="h-50 text-center flex flex-col cursor-pointer"
                     onmouseover="handleMouseover('leftBtn')" onmouseleave="handleMouseleave('leftBtn')"
                     onclick="handleNext('leftBtn')">
                     <div class="inline p-1" id="leftBtnChinese"></div>
                     <div class="inline p-1" id="leftBtnEnglish"></div>
-                    <div id="linear" class="mt-3 h-1"></div>
+                    <div id="linear" sy ></div>
                 </div>
                 <div id="rightBtn" class="h-50 text-center flex flex-col cursor-pointer "
                     onmouseover="handleMouseover('rightBtn')" onmouseleave="handleMouseleave('rightBtn')"
                     onclick="handleNext('rightBtn')">
                     <div class="inline p-1" id="rightBtnChinese"></div>
                     <div class="inline p-1" id="rightBtnEnglish"></div>
-                    <div id="linear" class="mt-3 h-1"></div>
+                    <div id="linear" ></div>
                 </div>
             </div>
         </div>
@@ -389,6 +390,12 @@
 
 </script>
 <style>
+    body{
+    cursor: none;
+    }
+    .bg-black{
+    background-color: black;
+    }
     .opcity-8{
     opacity: 0.8;
     }
@@ -486,16 +493,14 @@
         padding-top: 10px;
     }
 
-    .mt-3 {
-        margin-top: 3px;
-    }
+ 
 
-    .h-1 {
-        height: 1px;
-    }
+  
 
     .linear {
         /* width: 50px; */
+        height: 1px;
+        margin-top: 3px;
         background: linear-gradient(to right, rgb(0, 0, 0), rgb(255, 255, 255), rgb(0, 0, 0));
         background-clip: padding-box, border-box;
         border-bottom: 0px solid transparent;
