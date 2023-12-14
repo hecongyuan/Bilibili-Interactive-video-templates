@@ -7,14 +7,12 @@
     <title>In pain,In dream</title>
 </head>
 
-<!-- onmouseenter="fullScreenModel()" onmousemove="fullScreenModel()" onmouseover="fullScreenModel()" -->
-<body id="body" style="margin: 0;padding: 0;background-color: black;" >
+<body id="body" style="margin: 0;padding: 0;background-color: black;" onmouseenter="fullScreenModel()" onmousemove="fullScreenModel()" onmouseover="fullScreenModel()">
     <div class="w-full h-full" id="container">
         <div style="width: 100%;height: 100%;" class="mb-1">
-            <video id="player" src="https://drive.google/uc?export=download&id=1jfhl1IDyZjWCuB-5nMZ7g4sguCdOgGWq" class="inline-block" autoplay  
-                crossorigin="anonymous" height="1080px" width="1920px" playsinline controls></video>
-                
-
+            <video id="player"  class="inline-block"  height="1080" width="1920"   autoplay>
+                <source src="https://drive.google.com/uc?export=preview&id=1jfhl1IDyZjWCuB-5nMZ7g4sguCdOgGWq" type="video/mp4">
+            </video>
             <div id="progressContainer" class="w-full h-5px  flex justify-center hidden">
                 <div id="progress" class="bg-white h-5px w-full opcity-8" style="transform: translateY(0px);" onresize="handleOnresize"></div>
             </div>
@@ -220,7 +218,7 @@
         ,
         {
             index: 19,
-            src: './video/20finally片尾工作人员字幕.mp4',
+            src: 'https://drive.google.com/uc?export=preview&id=1jfhl1IDyZjWCuB-5nMZ7g4sguCdOgGWq',
             over: true
         }
 
