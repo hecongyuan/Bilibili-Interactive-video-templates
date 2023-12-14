@@ -1,0 +1,509 @@
+<!DOCTYPE html5>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>In pain,In dream</title>
+</head>
+
+<body id="body" style="margin: 0;padding: 0;background-color: black;" onmouseenter="fullScreenModel()" onmousemove="fullScreenModel()" onmouseover="fullScreenModel()">
+    <div class="w-full h-full" id="container">
+        <div style="width: 100%;height: 100%;" class="mb-1">
+            <video id="player" src="./video/1.开头动画+六岁的一玊大场景(选择点).mp4" class="inline-block" autoplay preload
+                crossorigin="anonymous" height="1080px" width="1920px" playsinline ></video>
+
+            <div id="progressContainer" class="w-full h-5px  flex justify-center hidden">
+                <div id="progress" class="bg-white h-5px w-full opcity-8" style="transform: translateY(-12px);" onresize="handleOnresize"></div>
+            </div>
+            <div id="btn" class="text-gray w-full flex justify-space-around pt-10 hidden absolute b-0" style="transform: translateY(-20px);">
+                <div id="leftBtn" class="h-50 text-center flex flex-col cursor-pointer"
+                    onmouseover="handleMouseover('leftBtn')" onmouseleave="handleMouseleave('leftBtn')"
+                    onclick="handleNext('leftBtn')">
+                    <div class="inline p-1" id="leftBtnChinese"></div>
+                    <div class="inline p-1" id="leftBtnEnglish"></div>
+                    <div id="linear" class="mt-3 h-1"></div>
+                </div>
+                <div id="rightBtn" class="h-50 text-center flex flex-col cursor-pointer "
+                    onmouseover="handleMouseover('rightBtn')" onmouseleave="handleMouseleave('rightBtn')"
+                    onclick="handleNext('rightBtn')">
+                    <div class="inline p-1" id="rightBtnChinese"></div>
+                    <div class="inline p-1" id="rightBtnEnglish"></div>
+                    <div id="linear" class="mt-3 h-1"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    let currentPlayIndex = 0
+    let timer = null//进度条定时器
+    const player = document.getElementById("player");
+    const leftBtnChinese = document.getElementById('leftBtnChinese')
+    const leftBtnEnglish = document.getElementById('leftBtnEnglish')
+    const rightBtnChinese = document.getElementById('rightBtnChinese')
+    const rightBtnEnglish = document.getElementById('rightBtnEnglish')
+    //进度条容器
+    const progressContainer = document.getElementById('progressContainer')
+
+
+    const progress = document.getElementById('progress')
+    const progressCss = window.getComputedStyle(progress)
+    const progressWidth = parseInt(progressCss.width)//进度条默认宽度
+    const playList = [
+        {
+            index: 0,
+            src: './video/1.开头动画+六岁的一玊大场景(选择点).mp4',
+            leftBtnName: {
+                chinese: '递出纸条',
+                english: 'Pass the note'
+            },
+            rightBtnName: {
+                chinese: '不递纸条',
+                english: 'Not handing the note'
+            },
+            leftBtn: 1,
+            rightBtn: 2,
+        },
+        {
+            index: 1,
+            src: './video/2.六岁的一玊（递出纸条）.mp4',
+            next: 3
+        },
+        {
+            index: 2,
+            src: './video/3.六岁的一玊（不递纸条）.mp4',
+            next: 3
+        },
+        {
+            index: 3,
+            src: './video/4.六岁的一玊放学-妈妈质问（选择点）.mp4',
+            leftBtnName: {
+                chinese: '承认',
+                english: 'Admit'
+            },
+            rightBtnName: {
+                chinese: '否认',
+                english: 'Deny'
+            },
+            leftBtn: 4,
+            rightBtn: 5,
+        }
+        ,
+        {
+            index: 4,
+            src: './video/5.六岁的一玊（承认）.mp4',
+            next: 6
+        }
+        ,
+        {
+            index: 5,
+            src: './video/6.六岁的一玊（否认）.mp4',
+            next: 6
+        }
+        ,
+        {
+            index: 6,
+            src: './video/7六岁的一玊一巴掌.mp4',
+            next: 7
+        }
+        ,
+        {
+            index: 7,
+            src: './video/8十二岁天台+跑进厕所.mp4',
+            leftBtnName: {
+                chinese: '打开门让母亲看见血迹',
+                english: 'let mother help'
+            },
+            rightBtnName: {
+                chinese: '独自留在厕所处理血迹',
+                english: 'handle it alone'
+            },
+            leftBtn: 8,
+            rightBtn: 9,
+        }
+        ,
+        {
+            index: 8,
+            src: './video/9十二岁（打开门让母亲看见血迹）.mp4',
+            next: 10
+        }
+        ,
+        {
+            index: 9,
+            src: './video/10十二岁（独自留在厕所处理血迹）.mp4',
+            next: 10
+        }
+        ,
+        {
+            index: 10,
+            src: './video/11十二岁母亲质问：你到底什么事？（选择点）.mp4',
+            leftBtnName: {
+                chinese: '提及血迹',
+                english: 'Mention of bloodstains'
+            },
+            rightBtnName: {
+                chinese: '递出手机',
+                english: 'Give out the phone'
+            },
+            leftBtn: 11,
+            rightBtn: 12,
+        }
+        ,
+        {
+            index: 11,
+            src: './video/12十二岁（提及血迹）.mp4',
+            next: 13
+        }
+        ,
+        {
+            index: 12,
+            src: './video/13十二岁（递出手机）.mp4',
+            next: 13
+        }
+        ,
+        {
+            index: 13,
+            src: './video/14十八岁开场+询问是否吃冰淇淋.mp4',
+            leftBtnName: {
+                chinese: '接受',
+                english: 'Accept'
+            },
+            rightBtnName: {
+                chinese: '拒绝',
+                english: 'Reject'
+            },
+            leftBtn: 14,
+            rightBtn: 15,
+        }
+        ,
+        {
+            index: 14,
+            src: './video/15十八岁（接受）.mp4',
+            next: 16
+        }
+        ,
+        {
+            index: 15,
+            src: './video/16十八岁（拒绝）.mp4',
+            next: 16
+        }
+        ,
+        {
+            index: 16,
+            src: './video/17十八岁中间（看书收到父亲短信）.mp4',
+            leftBtnName: {
+                chinese: '偷听',
+                english: 'Eavesdrop'
+            },
+            rightBtnName: {
+                chinese: '偷窥',
+                english: 'Peep'
+            },
+            leftBtn: 17,
+            rightBtn: 18,
+        }
+        ,
+        {
+            index: 17,
+            src: './video/18十八岁（偷听）.mp4',
+            next: 19
+        }
+        ,
+        {
+            index: 18,
+            src: './video/19十八岁(偷窥).mp4',
+            next: 19
+        }
+        ,
+        {
+            index: 19,
+            src: './video/20finally片尾工作人员字幕.mp4',
+            over: true
+        }
+
+    ]
+
+
+
+
+    const container = document.getElementById('container')
+
+    /** 全屏事件 */
+    function fullScreenModel() {
+        const element = document.getElementById('container');
+        /** 不同浏览器下需考虑兼容性问题*/
+        if (element.requestFullscreen) {
+            element.requestFullscreen();
+        } else if (element['msRequestFullscreen']) {
+            element['msRequestFullscreen']();
+        } else if (element['mozRequestFullScreen']) {
+            element['mozRequestFullScreen']();
+        } else if (element['webkitRequestFullscreen']) {
+            element['webkitRequestFullscreen']();
+        }
+        this.isFullScreen = true;
+    }
+
+    /** 退出全屏事件 */
+    function exitFullScreenModel() {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document['msExitFullscreen']) {
+            document['msExitFullscreen']();
+        } else if (document['mozCancelFullScreen']) {
+            document['mozCancelFullScreen']();
+        } else if (document['webkitExitFullscreen']) {
+            document['webkitExitFullscreen']();
+        }
+        this.isFullScreen = false;
+    }
+
+
+
+
+    //监听开始事件
+    player.addEventListener("play", () => {
+        console.log("开始")
+    })
+
+
+
+
+    //进度条变化进入默认事件
+    function handleOnresize() {
+        const progress = document.getElementById('progress')
+        console.log('resize')
+    }
+
+
+
+
+    //进度条
+    function startProgress() {
+        //显示按钮和进度条
+        progressContainer.classList.remove('hidden')
+        timer = setInterval(() => {
+            let progressWidth = parseInt(progressCss.width)
+            progress.style.width = progressWidth - 1 + 'px'
+            if (progressWidth <= 0) {
+                clearInterval(timer)
+                handleNext()
+            }
+        }, 5);
+
+    }
+
+    //关闭进度条
+    function closeProgress() {
+        clearInterval(timer)
+        progress.style.width = progressWidth + 'px'
+        progressContainer.classList.add('hidden')
+    }
+
+    //选择
+    function handleNext(dur) {
+        if (playList[currentPlayIndex].over) return
+        if (dur == 'leftBtn') {
+            player.src = playList[playList[currentPlayIndex].leftBtn].src
+            currentPlayIndex = playList[currentPlayIndex].leftBtn
+            closeProgress()
+        }
+        if (dur == 'rightBtn') {
+            player.src = playList[playList[currentPlayIndex].rightBtn].src
+            currentPlayIndex = playList[currentPlayIndex].rightBtn
+            closeProgress()
+        }
+
+        if (!dur) {
+            let random = parseInt(Math.random() * 10)
+            console.log(random)
+            if (random > 5) {
+                player.src = playList[playList[currentPlayIndex].leftBtn].src
+                currentPlayIndex = playList[currentPlayIndex].leftBtn
+            } else {
+                player.src = playList[playList[currentPlayIndex].rightBtn].src
+                currentPlayIndex = playList[currentPlayIndex].rightBtn
+            }
+
+            closeProgress()
+        }
+        closeBtn()
+    }
+
+    //显示选项
+    function showBtn() {
+        const btn = document.getElementById('btn')
+        btn.classList.remove('hidden')
+        //更改文字
+        leftBtnChinese.innerText = playList[currentPlayIndex].leftBtnName.chinese
+        leftBtnEnglish.innerText = playList[currentPlayIndex].leftBtnName.english
+        rightBtnChinese.innerText = playList[currentPlayIndex].rightBtnName.chinese
+        rightBtnEnglish.innerText = playList[currentPlayIndex].rightBtnName.english
+
+
+    }
+
+    //关闭选项
+    function closeBtn() {
+        const btn = document.getElementById('btn')
+        btn.classList.add('hidden')
+        //更改文字
+        leftBtnChinese.innerText = ''
+        leftBtnEnglish.innerText = ''
+        rightBtnChinese.innerText = ''
+        rightBtnEnglish.innerText = ''
+
+    }
+    //视频播放结束
+    player.addEventListener("ended", () => {
+        //处理顺序播放
+        if (playList[currentPlayIndex].next) {
+            player.src = playList[playList[currentPlayIndex].next].src
+            currentPlayIndex = playList[currentPlayIndex].next
+        } else {
+            showBtn()
+            startProgress()
+        }
+    })
+
+
+    //鼠标进入样式更改
+    function handleMouseover(id) {
+        const el = document.getElementById(id)
+        const linear = el.children[2]
+        el.classList.remove('text-gray')
+        el.classList.add('text-white')
+        linear.className = 'linear'
+    }
+
+    //鼠标离开样式恢复
+    function handleMouseleave(id) {
+        const el = document.getElementById(id)
+        const linear = el.children[2]
+        el.classList.remove('text-white')
+        el.classList.add('text-gray')
+        linear.className = ''
+    }
+
+
+</script>
+<style>
+    .opcity-8{
+    opacity: 0.8;
+    }
+    .absolute {
+        position: absolute;
+    }
+
+    .b-0 {
+        bottom: 0;
+    }
+
+    .h-5px {
+        height: 5px;
+    }
+
+    .bg-white {
+        background-color: white;
+    }
+
+    .text-white {
+        color: white;
+    }
+
+    .text-gray {
+        color: rgb(188, 185, 185);
+    }
+
+    .inline {
+        display: inline;
+    }
+
+    .inline-block {
+        display: inline-block;
+    }
+
+    .h-50 {
+        height: 50%;
+    }
+
+    .w-full {
+        width: 100%;
+    }
+
+    .w-90 {
+        width: 90%;
+    }
+
+    .h-full {
+        height: 100%;
+    }
+
+    .flex {
+        display: flex;
+    }
+
+    .justify-center {
+
+        justify-content: center;
+    }
+
+    .justify-space-around {
+        justify-content: space-around;
+    }
+
+
+    .align-center {
+        align-items: center;
+    }
+
+    .flex-col {
+        flex-direction: column;
+    }
+
+    .flex-row {
+        flex-direction: row;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .cursor-pointer {
+        cursor: pointer;
+    }
+
+    .p-1 {
+        padding: 1px;
+    }
+
+    .mb-1 {
+        margin-bottom: 1px;
+    }
+
+    .pt-10 {
+        padding-top: 10px;
+    }
+
+    .mt-3 {
+        margin-top: 3px;
+    }
+
+    .h-1 {
+        height: 1px;
+    }
+
+    .linear {
+        /* width: 50px; */
+        background: linear-gradient(to right, rgb(0, 0, 0), rgb(255, 255, 255), rgb(0, 0, 0));
+        background-clip: padding-box, border-box;
+        border-bottom: 0px solid transparent;
+    }
+
+    .hidden {
+        visibility: hidden;
+    }
+</style>
+
+</html>
