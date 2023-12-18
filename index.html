@@ -7,47 +7,126 @@
     <title>In pain,In dream</title>
 </head>
 
-<body id="body" style="margin: 0;padding: 0;background-color: black;" onclick="fullScreenModel()"
-    onmousemove="handleShowMouse()" class="w-full h-full">
-    <div id="commit" class="text-white absolute left-50 top-50 transeXY-50 text-center transition">
-        <div>请点击屏幕全屏观看</div>
-        <div>Please click on the screen to watch in full screen</div>
+<body id="body" style="margin: 0;padding: 0;background-color: black;" onclick="fullScreenModel()" onmousemove="handleShowMouse()" class="w-full h-full">
+    <div id="commit" class="text-white absolute left-50 top-50 transeXY-50 text-center transition font65 fontBold">
+        <div class="lineheight">请点击屏幕全屏观看</div>
+        <div class="lineheight">Please click on the screen to watch in full screen</div>
     </div>
-    <div class="w-full h-full display-none" id="container">
-        <div style="width: 100%;height: 100%;" class="mb-1">
-            <video id="player" class="inline-block">
-                <source src="https://drive.google.com/uc?export=preview&id=17U0YWk0UNRf5bK4LVrFRl_t9ZP9B6IMj"
-                    type="video/mp4">
+    <div class="w-full fullvh display-none" id="container">
+        <div class="mb-1 w-full fullvh">
+
+            <video id="player0" src="/video/video/1.%E5%BC%80%E5%A4%B4%E5%8A%A8%E7%94%BB%2B%E5%85%AD%E5%B2%81%E7%9A%84%E4%B8%80%E7%8E%8A%E5%A4%A7%E5%9C%BA%E6%99%AF%28%E9%80%89%E6%8B%A9%E7%82%B9%29.mp4
+            " class="inline-block z-0 fullvw" preload="auto" onended="handleEnded()">
             </video>
-            <div id="progressContainer" class="w-full h-5px  flex justify-center hidden">
-                <div id="progress" class="bg-white h-5px w-full opcity-8" style="transform: translateY(0px);"
-                    onresize="handleOnresize"></div>
+            <video id="player1" class="display-none"
+                src="/video/video/2.%E5%85%AD%E5%B2%81%E7%9A%84%E4%B8%80%E7%8E%8A%EF%BC%88%E9%80%92%E5%87%BA%E7%BA%B8%E6%9D%A1%EF%BC%89.mp4"
+                class="inline-block z-99" preload="auto" onended="handleEnded()">
+            </video>
+            <video id="player2" class="display-none"
+                src="/video/video/3.%E5%85%AD%E5%B2%81%E7%9A%84%E4%B8%80%E7%8E%8A%EF%BC%88%E4%B8%8D%E9%80%92%E7%BA%B8%E6%9D%A1%EF%BC%89.mp4"
+                class="inline-block" preload="auto" onended="handleEnded()">
+            </video>
+            <video id="player3" class="display-none"
+                src="/video/video/4.%E5%85%AD%E5%B2%81%E7%9A%84%E4%B8%80%E7%8E%8A%E6%94%BE%E5%AD%A6-%E5%A6%88%E5%A6%88%E8%B4%A8%E9%97%AE%EF%BC%88%E9%80%89%E6%8B%A9%E7%82%B9%EF%BC%89.mp4"
+                class="inline-block" preload="auto" onended="handleEnded()">
+            </video>
+            <video id="player4" class="display-none"
+                src="/video/video/5.%E5%85%AD%E5%B2%81%E7%9A%84%E4%B8%80%E7%8E%8A%EF%BC%88%E6%89%BF%E8%AE%A4%EF%BC%89.mp4"
+                class="inline-block" preload="auto" onended="handleEnded()" onended="handleEnded()">
+            </video>
+            <video id="player5" class="display-none"
+                src="/video/video/6.%E5%85%AD%E5%B2%81%E7%9A%84%E4%B8%80%E7%8E%8A%EF%BC%88%E5%90%A6%E8%AE%A4%EF%BC%89.mp4"
+                class="inline-block" preload="auto" onended="handleEnded()">
+            </video>
+            <video id="player6" class="display-none"
+                src="/video/video/7%E5%85%AD%E5%B2%81%E7%9A%84%E4%B8%80%E7%8E%8A%E4%B8%80%E5%B7%B4%E6%8E%8C.mp4"
+                class="inline-block" preload="auto" onended="handleEnded()">
+            </video>
+            <video id="player7" class="display-none"
+                src="/video/video/8%E5%8D%81%E4%BA%8C%E5%B2%81%E5%A4%A9%E5%8F%B0%2B%E8%B7%91%E8%BF%9B%E5%8E%95%E6%89%80.mp4"
+                class="inline-block" preload="auto" onended="handleEnded()">
+            </video>
+            <video id="player8" class="display-none"
+                src="/video/video/9%E5%8D%81%E4%BA%8C%E5%B2%81%EF%BC%88%E6%89%93%E5%BC%80%E9%97%A8%E8%AE%A9%E6%AF%8D%E4%BA%B2%E7%9C%8B%E8%A7%81%E8%A1%80%E8%BF%B9%EF%BC%89.mp4"
+                class="inline-block" preload="auto" onended="handleEnded()">
+            </video>
+            <video id="player9" class="display-none"
+                src="/video/video/10%E5%8D%81%E4%BA%8C%E5%B2%81%EF%BC%88%E7%8B%AC%E8%87%AA%E7%95%99%E5%9C%A8%E5%8E%95%E6%89%80%E5%A4%84%E7%90%86%E8%A1%80%E8%BF%B9%EF%BC%89.mp4"
+                class="inline-block" preload="auto" onended="handleEnded()">
+            </video>
+            <video id="player10" class="display-none"
+                src="/video/video/11%E5%8D%81%E4%BA%8C%E5%B2%81%E6%AF%8D%E4%BA%B2%E8%B4%A8%E9%97%AE%EF%BC%9A%E4%BD%A0%E5%88%B0%E5%BA%95%E4%BB%80%E4%B9%88%E4%BA%8B%EF%BC%9F%EF%BC%88%E9%80%89%E6%8B%A9%E7%82%B9%EF%BC%89.mp4"
+                class="inline-block" preload="auto" onended="handleEnded()">
+            </video>
+            <video id="player11" class="display-none"
+                src="/video/video/12%E5%8D%81%E4%BA%8C%E5%B2%81%EF%BC%88%E6%8F%90%E5%8F%8A%E8%A1%80%E8%BF%B9%EF%BC%89.mp4"
+                class="inline-block" preload="auto" onended="handleEnded()">
+            </video>
+            <video id="player12" class="display-none"
+                src="/video/video/13%E5%8D%81%E4%BA%8C%E5%B2%81%EF%BC%88%E9%80%92%E5%87%BA%E6%89%8B%E6%9C%BA%EF%BC%89.mp4?Expires=1702666528&OSSAccessKeyId=TMP.3KiLSNe5e7NJ9v8zybKnzy2bgjvKzJN9RxpUZe4YFL8AZSJkVourEX7rvrJeVYFUqB2Ay6ZHt8tThkbUY43KXdy1UGY9wB&Signature=GJiHd4WV8BChA2A%2B2EhIC2omIwU%3D"
+                class="inline-block" preload="auto" onended="handleEnded()">
+            </video>
+            <video id="player13" class="display-none"
+                src="/video/video/14%E5%8D%81%E5%85%AB%E5%B2%81%E5%BC%80%E5%9C%BA%2B%E8%AF%A2%E9%97%AE%E6%98%AF%E5%90%A6%E5%90%83%E5%86%B0%E6%B7%87%E6%B7%8B.mp4"
+                class="inline-block" preload="auto" onended="handleEnded()">
+            </video>
+            <video id="player14" class="display-none"
+                src="/video/video/15%E5%8D%81%E5%85%AB%E5%B2%81%EF%BC%88%E6%8E%A5%E5%8F%97%EF%BC%89.mp4"
+                class="inline-block" preload="auto" onended="handleEnded()">
+            </video>
+            <video id="player15" class="display-none"
+                src="/video/video/16%E5%8D%81%E5%85%AB%E5%B2%81%EF%BC%88%E6%8B%92%E7%BB%9D%EF%BC%89.mp4"
+                class="inline-block" preload="auto" onended="handleEnded()">
+            </video>
+            <video id="player16" class="display-none"
+                src="/video/video/17%E5%8D%81%E5%85%AB%E5%B2%81%E4%B8%AD%E9%97%B4%EF%BC%88%E7%9C%8B%E4%B9%A6%E6%94%B6%E5%88%B0%E7%88%B6%E4%BA%B2%E7%9F%AD%E4%BF%A1%EF%BC%89.mp4"
+                class="inline-block" preload="auto" onended="handleEnded()">
+            </video>
+            <video id="player17" class="display-none"
+                src="/video/video/18%E5%8D%81%E5%85%AB%E5%B2%81%EF%BC%88%E5%81%B7%E5%90%AC%EF%BC%89.mp4"
+                class="inline-block" preload="auto" onended="handleEnded()">
+            </video>
+            <video id="player18" class="display-none"
+                src="/video/video/19%E5%8D%81%E5%85%AB%E5%B2%81%28%E5%81%B7%E7%AA%A5%29.mp4"
+                class="inline-block" preload="auto" onended="handleEnded()">
+            </video>
+            <video id="player19" class="display-none"
+                src="/video/video/20finally%E7%89%87%E5%B0%BE%E5%B7%A5%E4%BD%9C%E4%BA%BA%E5%91%98%E5%AD%97%E5%B9%95.mp4"
+                class="inline-block" preload="auto" onended="handleEnded()">
+            </video>
+
+        </div>
+        <div class="fullvw">
+            <div id="btn" class=" bg-black text-gray fullvw  flex justify-space-around pt-10  absolute b-0 hidden"
+            style="transform: translateY(-20px);">
+            <div id="leftBtn" class="h-50 text-center flex flex-col cursor-pointer font65 fontBold letterSpacing"
+                onmouseover="handleMouseover('leftBtn')" onmouseleave="handleMouseleave('leftBtn')"
+                onclick="handleNext('leftBtn')">
+                <div class="inline p-2 " id="leftBtnChinese"></div>
+                <div class="inline p-2 " id="leftBtnEnglish"></div>
+                <div id="linear" class="h-4"></div>
             </div>
-            <div id="btn" class="bg-black text-gray w-full flex justify-space-around pt-10  absolute b-0 hidden"
-                style="transform: translateY(-20px);">
-                <div id="leftBtn" class="h-50 text-center flex flex-col cursor-pointer"
-                    onmouseover="handleMouseover('leftBtn')" onmouseleave="handleMouseleave('leftBtn')"
-                    onclick="handleNext('leftBtn')">
-                    <div class="inline p-1" id="leftBtnChinese"></div>
-                    <div class="inline p-1" id="leftBtnEnglish"></div>
-                    <div id="linear" class="h-4"></div>
-                </div>
-                <div id="rightBtn" class="h-50 text-center flex flex-col cursor-pointer "
-                    onmouseover="handleMouseover('rightBtn')" onmouseleave="handleMouseleave('rightBtn')"
-                    onclick="handleNext('rightBtn')">
-                    <div class="inline p-1" id="rightBtnChinese"></div>
-                    <div class="inline p-1" id="rightBtnEnglish"></div>
-                    <div id="linear" class="h-4"></div>
-                </div>
+            <div id="rightBtn" class="h-50 text-center flex flex-col cursor-pointer font65 fontBold letterSpacing"
+                onmouseover="handleMouseover('rightBtn')" onmouseleave="handleMouseleave('rightBtn')"
+                onclick="handleNext('rightBtn')">
+                <div class="inline p-2 " id="rightBtnChinese"></div>
+                <div class="inline p-2 " id="rightBtnEnglish"></div>
+                <div id="linear" class="h-4"></div>
             </div>
         </div>
+        <div id="progressContainer" class="w-full h-5px absolute  flex justify-center hidden ">
+            <div id="progress" class="bg-white h-5px w-full opcity-8 borderRadius absolute b-0"
+                style="transform: translateY(-100px);z-index: 99999; " onresize="handleOnresize"></div>
+        </div>
+
+    </div>
     </div>
 </body>
 <script>
 
     let currentPlayIndex = 0
     let timer = null//进度条定时器
-    const player = document.getElementById("player");
+    let player = document.getElementById("player0");
     const leftBtnChinese = document.getElementById('leftBtnChinese')
     const leftBtnEnglish = document.getElementById('leftBtnEnglish')
     const rightBtnChinese = document.getElementById('rightBtnChinese')
@@ -62,7 +141,7 @@
     const playList = [
         {
             index: 0,
-            src: 'https://drive.google.com/uc?export=preview&id=17U0YWk0UNRf5bK4LVrFRl_t9ZP9B6IMj',
+            // src: '/video/video/1.%E5%BC%80%E5%A4%B4%E5%8A%A8%E7%94%BB%2B%E5%85%AD%E5%B2%81%E7%9A%84%E4%B8%80%E7%8E%8A%E5%A4%A7%E5%9C%BA%E6%99%AF%28%E9%80%89%E6%8B%A9%E7%82%B9%29.mp4',
             leftBtnName: {
                 chinese: '递出纸条',
                 english: 'Pass the note'
@@ -76,17 +155,17 @@
         },
         {
             index: 1,
-            src: 'https://drive.google.com/uc?export=preview&id=1UAyfYrFS-zqNp0FzrYZUJzOrszqCiKKW',
+            // src: '/video/video/2.%E5%85%AD%E5%B2%81%E7%9A%84%E4%B8%80%E7%8E%8A%EF%BC%88%E9%80%92%E5%87%BA%E7%BA%B8%E6%9D%A1%EF%BC%89.mp4',
             next: 3
         },
         {
             index: 2,
-            src: 'https://drive.google.com/uc?export=preview&id=10s4mWfiyfQLxpk-vVv6MLj5sm67l23G4',
+            // src: '/video/video/3.%E5%85%AD%E5%B2%81%E7%9A%84%E4%B8%80%E7%8E%8A%EF%BC%88%E4%B8%8D%E9%80%92%E7%BA%B8%E6%9D%A1%EF%BC%89.mp4',
             next: 3
         },
         {
             index: 3,
-            src: 'https://drive.google.com/uc?export=preview&id=13N1Np67_UMK_lgJJo8K6RjhitOqjj88H',
+            // src: '/video/video/4.%E5%85%AD%E5%B2%81%E7%9A%84%E4%B8%80%E7%8E%8A%E6%94%BE%E5%AD%A6-%E5%A6%88%E5%A6%88%E8%B4%A8%E9%97%AE%EF%BC%88%E9%80%89%E6%8B%A9%E7%82%B9%EF%BC%89.mp4',
             leftBtnName: {
                 chinese: '承认',
                 english: 'Admit'
@@ -101,25 +180,25 @@
         ,
         {
             index: 4,
-            src: 'https://drive.google.com/uc?export=preview&id=1VlH-MudPXHvoRcvdn_YHJ7obRwdGp3Ue',
+            // src: '/video/video/5.%E5%85%AD%E5%B2%81%E7%9A%84%E4%B8%80%E7%8E%8A%EF%BC%88%E6%89%BF%E8%AE%A4%EF%BC%89.mp4',
             next: 6
         }
         ,
         {
             index: 5,
-            src: 'https://drive.google.com/uc?export=preview&id=11fIUJ1Mkuyu4MYOxJZK_JpgZqhB07H3a',
+            // src: '/video/video/6.%E5%85%AD%E5%B2%81%E7%9A%84%E4%B8%80%E7%8E%8A%EF%BC%88%E5%90%A6%E8%AE%A4%EF%BC%89.mp4',
             next: 6
         }
         ,
         {
             index: 6,
-            src: 'https://drive.google.com/uc?export=preview&id=16eAFx-_PJMRK0lj8PANbQLs924gDCj9g',
+            // src: '/video/video/7%E5%85%AD%E5%B2%81%E7%9A%84%E4%B8%80%E7%8E%8A%E4%B8%80%E5%B7%B4%E6%8E%8C.mp4',
             next: 7
         }
         ,
         {
             index: 7,
-            src: 'https://drive.google.com/uc?export=preview&id=1BOXd4r8rE2MJlHn4gvL_oh_tkhhZ_qhd',
+            // src: '/video/video/8%E5%8D%81%E4%BA%8C%E5%B2%81%E5%A4%A9%E5%8F%B0%2B%E8%B7%91%E8%BF%9B%E5%8E%95%E6%89%80.mp4',
             leftBtnName: {
                 chinese: '打开门让母亲看见血迹',
                 english: 'let mother help'
@@ -134,19 +213,19 @@
         ,
         {
             index: 8,
-            src: 'https://drive.google.com/uc?export=preview&id=1mwStk-OnktsQE9jhYtg9whXL_Bb6-IKr',
+            // src: '/video/video/9%E5%8D%81%E4%BA%8C%E5%B2%81%EF%BC%88%E6%89%93%E5%BC%80%E9%97%A8%E8%AE%A9%E6%AF%8D%E4%BA%B2%E7%9C%8B%E8%A7%81%E8%A1%80%E8%BF%B9%EF%BC%89.mp4',
             next: 10
         }
         ,
         {
             index: 9,
-            src: 'https://drive.google.com/uc?export=preview&id=1suMsgIbNcBvMskTUpqMol8K1ChnN6D5f',
+            // src: '/video/video/10%E5%8D%81%E4%BA%8C%E5%B2%81%EF%BC%88%E7%8B%AC%E8%87%AA%E7%95%99%E5%9C%A8%E5%8E%95%E6%89%80%E5%A4%84%E7%90%86%E8%A1%80%E8%BF%B9%EF%BC%89.mp4',
             next: 10
         }
         ,
         {
             index: 10,
-            src: 'https://drive.google.com/uc?export=preview&id=18oc8b1-g3Q61Z4s2r9eD-gihO72Fumg2',
+            // src: '/video/video/11%E5%8D%81%E4%BA%8C%E5%B2%81%E6%AF%8D%E4%BA%B2%E8%B4%A8%E9%97%AE%EF%BC%9A%E4%BD%A0%E5%88%B0%E5%BA%95%E4%BB%80%E4%B9%88%E4%BA%8B%EF%BC%9F%EF%BC%88%E9%80%89%E6%8B%A9%E7%82%B9%EF%BC%89.mp4',
             leftBtnName: {
                 chinese: '提及血迹',
                 english: 'Mention of bloodstains'
@@ -161,19 +240,19 @@
         ,
         {
             index: 11,
-            src: 'https://drive.google.com/uc?export=preview&id=1j2-FsHk5bWDDOnfUbXS4oA3sqSJj8ySu',
+            // src: '/video/video/12%E5%8D%81%E4%BA%8C%E5%B2%81%EF%BC%88%E6%8F%90%E5%8F%8A%E8%A1%80%E8%BF%B9%EF%BC%89.mp4',
             next: 13
         }
         ,
         {
             index: 12,
-            src: 'https://drive.google.com/uc?export=preview&id=1Vfl1KqB8_A48hhsKBXOrTdn3ZkkVNbwZ',
+            // src: '/video/video/13%E5%8D%81%E4%BA%8C%E5%B2%81%EF%BC%88%E9%80%92%E5%87%BA%E6%89%8B%E6%9C%BA%EF%BC%89.mp4?Expires=1702666528&OSSAccessKeyId=TMP.3KiLSNe5e7NJ9v8zybKnzy2bgjvKzJN9RxpUZe4YFL8AZSJkVourEX7rvrJeVYFUqB2Ay6ZHt8tThkbUY43KXdy1UGY9wB&Signature=GJiHd4WV8BChA2A%2B2EhIC2omIwU%3D',
             next: 13
         }
         ,
         {
             index: 13,
-            src: 'https://drive.google.com/uc?export=preview&id=1cxP1I6BCYoGFz-qYU93WOd_t3_W_-Xfi',
+            // src: '/video/video/14%E5%8D%81%E5%85%AB%E5%B2%81%E5%BC%80%E5%9C%BA%2B%E8%AF%A2%E9%97%AE%E6%98%AF%E5%90%A6%E5%90%83%E5%86%B0%E6%B7%87%E6%B7%8B.mp4',
             leftBtnName: {
                 chinese: '接受',
                 english: 'Accept'
@@ -188,19 +267,19 @@
         ,
         {
             index: 14,
-            src: 'https://drive.google.com/uc?export=preview&id=1kMJEMx_FKJnzpeS8RtwSdURQD5RFQaYY',
+            // src: '/video/video/15%E5%8D%81%E5%85%AB%E5%B2%81%EF%BC%88%E6%8E%A5%E5%8F%97%EF%BC%89.mp4',
             next: 16
         }
         ,
         {
             index: 15,
-            src: 'https://drive.google.com/uc?export=preview&id=1aTsV8PH857Ny7els7fAUADnzt0MpOmQf',
+            // src: '/video/video/16%E5%8D%81%E5%85%AB%E5%B2%81%EF%BC%88%E6%8B%92%E7%BB%9D%EF%BC%89.mp4',
             next: 16
         }
         ,
         {
             index: 16,
-            src: 'https://drive.google.com/uc?export=preview&id=14c32NDK_rOWcMOtwD83zP72v8JP6QH97',
+            // src: '/video/video/17%E5%8D%81%E5%85%AB%E5%B2%81%E4%B8%AD%E9%97%B4%EF%BC%88%E7%9C%8B%E4%B9%A6%E6%94%B6%E5%88%B0%E7%88%B6%E4%BA%B2%E7%9F%AD%E4%BF%A1%EF%BC%89.mp4',
             leftBtnName: {
                 chinese: '偷听',
                 english: 'Eavesdrop'
@@ -215,19 +294,19 @@
         ,
         {
             index: 17,
-            src: '',
+            // src: '/video/video/18%E5%8D%81%E5%85%AB%E5%B2%81%EF%BC%88%E5%81%B7%E5%90%AC%EF%BC%89.mp4',
             next: 19
         }
         ,
         {
             index: 18,
-            src: 'https://drive.google.com/uc?export=preview&id=1HOvdlxxpi_2nh9EFzZEVMfdgMB7YxXlA',
+            // src: '/video/video/19%E5%8D%81%E5%85%AB%E5%B2%81%28%E5%81%B7%E7%AA%A5%29.mp4',
             next: 19
         }
         ,
         {
             index: 19,
-            src: 'https://drive.google.com/uc?export=preview&id=1jfhl1IDyZjWCuB-5nMZ7g4sguCdOgGWq',
+            // src: '/video/video/20finally%E7%89%87%E5%B0%BE%E5%B7%A5%E4%BD%9C%E4%BA%BA%E5%91%98%E5%AD%97%E5%B9%95.mp4',
             over: true
         }
 
@@ -265,15 +344,20 @@
         const element = document.getElementById('container');
         /** 不同浏览器下需考虑兼容性问题*/
         if (element.requestFullscreen) {
+            console.log('111')
             element.requestFullscreen();
+
         } else if (element['msRequestFullscreen']) {
+            console.log('222')
             element['msRequestFullscreen']();
         } else if (element['mozRequestFullScreen']) {
+            console.log('333')
             element['mozRequestFullScreen']();
         } else if (element['webkitRequestFullscreen']) {
+            console.log('444')
             element['webkitRequestFullscreen']();
         }
-        this.isFullScreen = true;
+
     }
 
     /** 退出全屏事件 */
@@ -287,7 +371,6 @@
         } else if (document['webkitExitFullscreen']) {
             document['webkitExitFullscreen']();
         }
-        this.isFullScreen = false;
     }
 
 
@@ -316,7 +399,7 @@
         progressContainer.classList.remove('hidden')
         timer = setInterval(() => {
             let progressWidth = parseInt(progressCss.width)
-            progress.style.width = progressWidth - 1 + 'px'
+            progress.style.width = progressWidth - 0.5 + 'px'
             if (progressWidth <= 0) {
                 clearInterval(timer)
                 handleNext()
@@ -336,29 +419,57 @@
     function handleNext(dur) {
         if (playList[currentPlayIndex].over) return
         if (dur == 'leftBtn') {
-            player.src = playList[playList[currentPlayIndex].leftBtn].src
+            // player.src = playList[playList[currentPlayIndex].leftBtn].src
+
+
             currentPlayIndex = playList[currentPlayIndex].leftBtn
+            let currentPlayer = 'player' + currentPlayIndex
+            player.remove()
+            player = document.getElementById(currentPlayer);
+            player.classList.remove('display-none')
+            player.play()
             closeProgress()
+            console.log('leftBtn', currentPlayer)
         }
         if (dur == 'rightBtn') {
-            player.src = playList[playList[currentPlayIndex].rightBtn].src
+            // player.src = playList[playList[currentPlayIndex].rightBtn].src
             currentPlayIndex = playList[currentPlayIndex].rightBtn
+            let currentPlayer = 'player' + currentPlayIndex
+            player.remove()
+            player = document.getElementById(currentPlayer);
+            player.classList.remove('display-none')
+            player.play()
             closeProgress()
+            console.log('rightBtn', currentPlayer)
         }
 
         if (!dur) {
             let random = parseInt(Math.random() * 10)
             console.log(random)
             if (random > 5) {
-                player.src = playList[playList[currentPlayIndex].leftBtn].src
+                // player.src = playList[playList[currentPlayIndex].leftBtn].src
                 currentPlayIndex = playList[currentPlayIndex].leftBtn
+                let currentPlayer = 'player' + currentPlayIndex
+                player.remove()
+                player = document.getElementById(currentPlayer);
+                player.classList.remove('display-none')
+                player.play()
             } else {
-                player.src = playList[playList[currentPlayIndex].rightBtn].src
+
                 currentPlayIndex = playList[currentPlayIndex].rightBtn
+                let currentPlayer = 'player' + currentPlayIndex
+                player.remove()
+                player = document.getElementById(currentPlayer);
+                player.classList.remove('display-none')
+                player.play()
+                console.log('rendom', currentPlayer)
             }
 
             closeProgress()
         }
+
+
+
         closeBtn()
     }
 
@@ -367,10 +478,10 @@
         const btn = document.getElementById('btn')
         btn.classList.remove('hidden')
         //更改文字
-        leftBtnChinese.innerText = playList[currentPlayIndex].leftBtnName.chinese
-        leftBtnEnglish.innerText = playList[currentPlayIndex].leftBtnName.english
-        rightBtnChinese.innerText = playList[currentPlayIndex].rightBtnName.chinese
-        rightBtnEnglish.innerText = playList[currentPlayIndex].rightBtnName.english
+        leftBtnChinese.innerText = "「" + playList[currentPlayIndex].leftBtnName.chinese + "」"
+        leftBtnEnglish.innerText = playList[currentPlayIndex].leftBtnName.english.toLocaleUpperCase()
+        rightBtnChinese.innerText = "「" + playList[currentPlayIndex].rightBtnName.chinese + "」"
+        rightBtnEnglish.innerText = playList[currentPlayIndex].rightBtnName.english.toLocaleUpperCase()
 
 
     }
@@ -386,18 +497,27 @@
         rightBtnEnglish.innerText = ''
 
     }
-    //视频播放结束
-    player.addEventListener("ended", () => {
+
+
+    function handleEnded() {
         //处理顺序播放
+
         if (playList[currentPlayIndex].next) {
-            player.src = playList[playList[currentPlayIndex].next].src
+            // player.src = playList[playList[currentPlayIndex].next].src
             currentPlayIndex = playList[currentPlayIndex].next
+            let currentPlayer = 'player' + currentPlayIndex
+            player.remove()
+            player = document.getElementById(currentPlayer);
+            player.classList.remove('display-none')
+            player.play()
+
         } else {
+            console.log('showbtn')
             showBtn()
             startProgress()
         }
-    })
 
+    }
 
     //鼠标进入样式更改
     function handleMouseover(id) {
@@ -420,6 +540,49 @@
 
 </script>
 <style>
+    .h-100 {
+
+        height: 100px;
+    }
+
+    .fullvw {
+        width: 100vw;
+    }
+
+    .fullvh {
+        height: 100vh;
+    }
+
+    .z-0 {
+        z-index: -99;
+    }
+
+    .z-99 {
+        z-index: 99;
+    }
+
+    .letterSpacing {
+        letter-spacing: 1px;
+    }
+
+    .lineheight {
+        line-height: 40px;
+    }
+
+
+
+    .fontBold {
+        font-weight: bold;
+    }
+
+    .font65 {
+        font-size: 16px;
+    }
+
+    .borderRadius {
+        border-radius: 3.5px;
+    }
+
     .cursornone {
         cursor: none;
     }
@@ -540,6 +703,10 @@
         padding: 1px;
     }
 
+    .p-2 {
+        padding: 1px;
+    }
+
     .mb-1 {
         margin-bottom: 1px;
     }
@@ -547,10 +714,6 @@
     .pt-10 {
         padding-top: 10px;
     }
-
-
-
-
 
     .linear {
         /* width: 50px; */
